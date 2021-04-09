@@ -1,48 +1,49 @@
-from application import app, db, api
+from application import app, db
+# , api
 from flask import render_template, request, json, jsonify, Response, redirect, flash, url_for, session
 from application.models import User, Course, Enrollment
 from application.forms import LoginForm, RegisterForm
-from flask_restplus import Resource
+# from flask_restplus import Resource
 
 
 courseData = [{"courseID":"1111","title":"PHP 111","description":"Intro to PHP","credits":"3","term":"Fall, Spring"}, {"courseID":"2222","title":"Java 1","description":"Intro to Java Programming","credits":"4","term":"Spring"}, {"courseID":"3333","title":"Adv PHP 201","description":"Advanced PHP Programming","credits":"3","term":"Fall"}, {"courseID":"4444","title":"Angular 1","description":"Intro to Angular","credits":"3","term":"Fall, Spring"}, {"courseID":"5555","title":"Java 2","description":"Advanced Java Programming","credits":"4","term":"Fall"}]
 
 
-###########################
-@api.route('/api','/api/')
-class GetandPost(Resource):
+# ###########################
+# @api.route('/api','/api/')
+# class GetandPost(Resource):
 
-    #get all
-    def get(self):
-        return jsonify(User.objects.all())
+#     #get all
+#     def get(self):
+#         return jsonify(User.objects.all())
 
-    #post
-    def post(self):
-        data = api.payload
-        user = User(user_id=data['user_id'], email=data['email'], first_name=data['first_name'], last_name=data['last_name'])
-        user.set_password(data['password'])
-        user.save()
-        return jsonify(User.objects(user_id=data['user_id']))
+#     #post
+#     def post(self):
+#         data = api.payload
+#         user = User(user_id=data['user_id'], email=data['email'], first_name=data['first_name'], last_name=data['last_name'])
+#         user.set_password(data['password'])
+#         user.save()
+#         return jsonify(User.objects(user_id=data['user_id']))
 
 
-@api.route('/api/<idx>')
-class GetUpdateDelete(Resource):
+# @api.route('/api/<idx>')
+# class GetUpdateDelete(Resource):
 
-    #get one
-    def get(self,idx):
-        return jsonify(User.objects(user_id=idx))    
+#     #get one
+#     def get(self,idx):
+#         return jsonify(User.objects(user_id=idx))    
 
-    #put
-    def put(self,idx):
-        data = api.payload
-        User.objects(user_id=idx).update(**data)
-        return jsonify(User.objects(user_id=idx))
+#     #put
+#     def put(self,idx):
+#         data = api.payload
+#         User.objects(user_id=idx).update(**data)
+#         return jsonify(User.objects(user_id=idx))
 
-    #delete
-    def delete(self,idx):
-        User.objects(user_id=idx).delete()
-        return jsonify("User is deleted!")
-###########################
+#     #delete
+#     def delete(self,idx):
+#         User.objects(user_id=idx).delete()
+#         return jsonify("User is deleted!")
+# ###########################
 
 
 @app.route("/")
