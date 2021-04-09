@@ -8,6 +8,9 @@ Start Virtualenv
 Activate virtualenv (Mac)
 - source venv/bin/activate
 
+Activate virtualenv (Windows)
+- venv/Scripts/activate
+
 Create .flaskenv
 
 Create requirements.txt
